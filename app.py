@@ -1,43 +1,55 @@
 import streamlit as st
 import torch
-from PIL import Image
+from torchvision import models, transforms
+from PIL import Image, ImageOps
 import numpy as np
 import pandas as pd
-st.set_option('deprecation.showfileUploaderEncoding', False) # deprecation 표시 안함 
-st.sidebar.text("슬라이드바 테스트 입니다.")
-# 타이틀
-st.title("잎사귀 다중분류")
+from io import StringIO
 
-# 아무 이미지 출력
-image2 = Image.open('./Test_1.jpg')
-st.image(image2, caption='multiple_disease(1)',use_column_width=True)
+st.set_option('deprecation.showfileUploaderEncoding', False)
+st.title('당신의 잎사귀는 안녕하십니까?')
 
-# csv파일 훑어보기
-train = pd.read_csv('./train.csv')
-st.write(train.head())
-test = pd.read_csv('./test.csv')
-st.write(test.head())
+file_up = st.sidebar.file_uploader("File Upload", type=['jpeg', 'png', 'jpg', 'webp'])
 
+def predict(image):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = torch.load("model.pt", map_location=device)
 
-# 디바이스 설정
-device = "cuda" if torch.cuda.is_available() else "cpu"
-# 모델 로드
-model = torch.load("model.pt", map_location=device)
-st.write(model)
+    transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize(
+                mean = [0.485, 0.456, 0.406],
+                std = [0.229, 0.224, 0.225]
+        )])     
 
-data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-size = (224, 224)
+    img = Image.open(image)
+    batch_t = torch.unsqueeze(transform(img), 0)
+    model.eval()
+    out = model(batch_t)
 
-image2 = image2.resize((size))
+    with open('labels.txt') as f:
+        classes = [line.strip() for line in f.readlines()]
 
+    prob = torch.nn.functional.softmax(out, dim=1)[0]*100
+    _, indices = torch.sort(out, descending = True)
+    return [(classes[idx], prob[idx].item()) for idx in indices[0][:1]]
 
-image_array = np.asarray(image2)
-# Normalize the image
-normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
-
-# Load the image into the array
-data[0] = normalized_image_array
-
-# run the inference
-# prediction = model.predict(data)
-# st.write(prediction)
+if file_up is not None:
+        image = Image.open(file_up)
+        st.image(image, caption = 'Uploaded Image.', use_column_width = True)
+        st.write("")
+        st.write("Just a second...")
+        labels = predict(file_up)
+        st.write(labels)
+        print(labels)
+        for i in labels[0][0]:
+                if '1' in i:
+                        st.write("***결과 : 건강합니다!***")
+                if '2' == i:
+                        st.write("***결과 : 여러 질병에 걸린 상태입니다!***")
+                if '3' == i:
+                        st.write("***결과 : 녹병균에 걸린 상태입니다!***")
+                if '4' == i:
+                        st.write("***결과 : 붉은 곰팡이병에 걸린 상태입니다!***")
