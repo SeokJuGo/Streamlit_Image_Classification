@@ -41,7 +41,9 @@ if file_up is not None:
         image = Image.open(file_up)
         st.image(image, caption = 'Uploaded Image.', use_column_width = True)
         st.write("")
-        st.write("Just a second...")
+        with st.spinner('Wait for it...'):
+            time.sleep(3)
+            st.success('Done!')
         labels = predict(file_up)
         st.write(labels)
         print(labels)
