@@ -39,5 +39,5 @@ normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
 data[0] = normalized_image_array
 
 # run the inference
-prediction = model.predict(data)
-st.write(prediction)
+# prediction = model.predict(data)
+# st.write(prediction)
