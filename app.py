@@ -2,7 +2,6 @@ import streamlit as st
 import torch
 from PIL import Image
 import numpy as np
-import cv2
 
 st.set_option('deprecation.showfileUploaderEncoding', False) # deprecation 표시 안함 
 
@@ -25,8 +24,6 @@ size = (224, 224)
 image2 = image2.resize((size))
 
 
-# display the resized image
-st.write(image2.show())
 image_array = np.asarray(image2)
 # Normalize the image
 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
