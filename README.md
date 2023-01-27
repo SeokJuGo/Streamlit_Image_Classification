@@ -9,7 +9,7 @@
 </div>
 <br/>
 
-**Link : https://seokjugo-streamlit-image-classification-app-l2ytha.streamlit.app/**
+**Link : https://plant-diseases-check.streamlit.app//**
 
 목차 :bookmark_tabs:
 ================================
