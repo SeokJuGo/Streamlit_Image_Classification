@@ -9,6 +9,8 @@
 </div>
 <br/>
 
+**Link : https://seokjugo-streamlit-image-classification-app-l2ytha.streamlit.app/**
+
 목차 :bookmark_tabs:
 ================================
 - [개요](#개요)
@@ -22,13 +24,12 @@
 ## 개요
 ======================================
 식물의 상태는 총 4가지로 분류됩니다.
-
 - 건강함
 - 여러 질병에 걸림
 - 녹병균
 - 붉은 곰팡이병
 
-**Link : https://seokjugo-streamlit-image-classification-app-l2ytha.streamlit.app/**
+
 
 
 ## 모델
