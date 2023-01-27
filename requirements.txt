@@ -1,6 +1,8 @@
-streamlit 
+streamlit
+numpy
 pandas 
 sklearn 
 torch
 torchvision
 image
+PIL
