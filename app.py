@@ -6,10 +6,11 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 
-st.set_option('deprecation.showfileUploaderEncoding', False)
-st.title('당신의 잎사귀는 안녕하십니까?')
+st.title('*식물 건강 테스트*')
+st.write('🌿이 식물은 건강할까? 지금 바로 확인해봅시다!')
 
-file_up = st.sidebar.file_uploader("File Upload", type=['jpeg', 'png', 'jpg', 'webp'])
+st.sidebar.subheader("File upload")
+file_up = st.sidebar.file_uploader("식물 사진을 업로드해주세요.", type=['jpeg', 'png', 'jpg', 'webp'])
 
 def predict(image):
     device = "cuda" if torch.cuda.is_available() else "cpu"
