@@ -3,4 +3,4 @@ pandas
 sklearn 
 torch
 torchvision
-opencv
+image
