@@ -1,0 +1,4 @@
+1, healthy
+2, multiple_diseases
+3, rust
+4, scab
