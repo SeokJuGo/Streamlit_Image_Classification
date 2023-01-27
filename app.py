@@ -2,15 +2,22 @@ import streamlit as st
 import torch
 from PIL import Image
 import numpy as np
-
+import pandas as pd
 st.set_option('deprecation.showfileUploaderEncoding', False) # deprecation 표시 안함 
-
+st.sidebar.text("슬라이드바 테스트 입니다.")
 # 타이틀
 st.title("잎사귀 다중분류")
 
 # 아무 이미지 출력
 image2 = Image.open('./Test_1.jpg')
-st.image(image2, caption='질병식물',use_column_width=True)
+st.image(image2, caption='multiple_disease(1)',use_column_width=True)
+
+# csv파일 훑어보기
+train = pd.read_csv('./train.csv')
+st.write(train.head())
+test = pd.read_csv('./test.csv')
+st.write(test.head())
+
 
 # 디바이스 설정
 device = "cuda" if torch.cuda.is_available() else "cpu"
