@@ -5,6 +5,7 @@ from PIL import Image, ImageOps
 import numpy as np
 import pandas as pd
 from io import StringIO
+import time
 
 st.title('*식물 건강 테스트*')
 st.write('🌿이 식물은 건강할까? 지금 바로 확인해봅시다!')
