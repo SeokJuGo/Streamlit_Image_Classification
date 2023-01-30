@@ -21,9 +21,10 @@
 ## 목차 :bookmark_tabs:
 
 - [개요](#개요)
-- [모델](#모델)
 - [구동](#구동)
 - [TEST2](#TEST2)
+
+
 
 
 ## 개요
@@ -44,6 +45,10 @@
 ## 시연영상
 ![plant](https://user-images.githubusercontent.com/116260619/215047900-0cb0e739-7d99-4242-b897-1eac00f3d3cf.gif)
 
+## Trouble Shooting
+- 모델 확장자
+
+- 파이토치 라이브러리 함수 predict
 
 ## 코드
 
@@ -153,3 +158,10 @@ if file_up is not None:
                 time.sleep(0.01)
                 my_bar.progress(percent_complete + 1)
         st.write(str(int(labels[0][1]))+"%") 
+
+
+
+## 추가하고 싶은 기능
+- 파일 업로드를 한꺼번에 해서 예측하기
+- 
+- 예측한 결과들과 이미지들을 누적해서 파일로 내보내기
