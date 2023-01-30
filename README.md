@@ -9,7 +9,7 @@
 </div>
 <br/>
 
-**Link : https://plant-diseases-check.streamlit.app/**
+**Link :** <a href="https://plant-diseases-check.streamlit.app/" target="_blank">https://plant-diseases-check.streamlit.app/</a>
 
 목차 :bookmark_tabs:
 ================================
