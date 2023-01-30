@@ -18,18 +18,12 @@
 
 
 
-
-
-
-
 ## 목차 :bookmark_tabs:
 
 - [개요](#개요)
 - [모델](#모델)
 - [구동](#구동)
 - [TEST2](#TEST2)
-
-
 
 
 ## 개요
@@ -47,16 +41,12 @@
 사람이 먹었을 경우에는 구토를 유발시키기도 한다.
 
 
-
 ## 구동
-
-
 ![plant](https://user-images.githubusercontent.com/116260619/215047900-0cb0e739-7d99-4242-b897-1eac00f3d3cf.gif)
 
 
-
 ## 모델
-
+pytorch 라이브러리를 이용한 
 
 
 
