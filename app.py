@@ -6,12 +6,38 @@ import numpy as np
 import pandas as pd
 from io import StringIO
 import time
+import base64
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read())
+    st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
+        background-size: cover
+    }}
+    
+    .block-container.css-91z34k.egzxvld4 {{
+        background-color: rgb(255, 255, 255, 0.7);
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
+add_bg_from_local('image.jpg')    
 
+result=[]
+images=[]
 st.title('*식물 건강 테스트*')
 st.write('🌿이 식물은 건강할까? 지금 바로 확인해봅시다!')
 
 st.sidebar.subheader("File upload")
 file_up = st.sidebar.file_uploader("식물 사진을 업로드해주세요.", type=['jpeg', 'png', 'jpg', 'webp'])
+import streamlit as st
+import time
+
+
 
 def predict(image):
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -40,14 +66,21 @@ def predict(image):
 
 if file_up is not None:
         image = Image.open(file_up)
+        images.append(image)
         st.image(image, caption = 'Uploaded Image.', use_column_width = True)
         st.write("")
+        my_bar = st.progress(0)
+
         with st.spinner('Wait for it...'):
             time.sleep(3)
-            st.success('Done!')
+
+
+
         labels = predict(file_up)
-        st.write(labels)
         print(labels)
+        # result.append[labels]
+        for i in labels[0][0]:
+                print(i)
         for i in labels[0][0]:
                 if '1' in i:
                         st.write("***결과 : 건강합니다!***")
@@ -63,3 +96,10 @@ if file_up is not None:
                 if '4' == i:
                         st.write("***결과 : 붉은 곰팡이병에 걸린 상태입니다!***")
                         st.write("농업기술포털의 [붉은 곰팡이병](https://www.nongsaro.go.kr/portal/ps/pss/pssa/sicknsSearchDtl.ps?pageIndex=1&pageSize=10&&sicknsCode=D00000753&menuId=PS00202) 에 대한 문서를 참고해보세요.")
+
+        st.write("Accuracy!")
+
+        for percent_complete in range(int(labels[0][1])):
+                time.sleep(0.01)
+                my_bar.progress(percent_complete + 1)
+        st.write(str(int(labels[0][1]))+"%") 
