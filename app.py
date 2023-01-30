@@ -51,9 +51,15 @@ if file_up is not None:
         for i in labels[0][0]:
                 if '1' in i:
                         st.write("***결과 : 건강합니다!***")
+                        st.write("당신의 노력이 식물을 건강하게 키워냈습니다!")
                 if '2' == i:
                         st.write("***결과 : 여러 질병에 걸린 상태입니다!***")
+                        st.write("식물도 인간처럼 질병에 걸린답니다.")
+                        st.write("농업기술포털의 식물병에 대한 [정보](https://www.nongsaro.go.kr/portal/ps/psv/psvr/psvrc/rdaInterDtl.ps?&menuId=PS00063&cntntsNo=208859) 를 참고해보세요.")
                 if '3' == i:
                         st.write("***결과 : 녹병균에 걸린 상태입니다!***")
+                        st.write("녹병균은 종류도, 그 예방법도 정말 다양하답니다.")
+                        st.write("산림청의 [부분별진단검색](https://www.forest.go.kr/kfsweb/mer/fip/search/selectSrchPartDgnosisList.do?dbhisTpcd=10&dbhisPartActoDgnssCd=01&mn=NKFS_02_02_02_02_06) 을 통해 더 정확한 정보를 찾아보세요.")
                 if '4' == i:
                         st.write("***결과 : 붉은 곰팡이병에 걸린 상태입니다!***")
+                        st.write("농업기술포털의 [붉은 곰팡이병](https://www.nongsaro.go.kr/portal/ps/pss/pssa/sicknsSearchDtl.ps?pageIndex=1&pageSize=10&&sicknsCode=D00000753&menuId=PS00202) 에 대한 문서를 참고해보세요.")
