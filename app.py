@@ -17,11 +17,15 @@ def add_bg_from_local(image_file):
         background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
         background-size: cover
     }}
+    
+    .block-container.css-91z34k.egzxvld4 {{
+        background-color: rgb(255, 255, 255, 0.7);
+    }}
     </style>
     """,
     unsafe_allow_html=True
     )
-add_bg_from_local('image.png')    
+add_bg_from_local('image.jpg')      
 
 result=[]
 images=[]
